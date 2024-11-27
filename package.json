@@ -9,7 +9,7 @@
   ],
   "author": "misha",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "axios": "^1.7.7",
     "class-validator": "^0.14.1",
     "date-fns": "^4.1.0",
