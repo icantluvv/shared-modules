@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8080/v1/'
+export const BASE_URL = 'https://maestritest-938583542765.us-central1.run.app/v1/'
 export const REFRESH_TOKEN_URL = 'refresh'
 
 export const REFRESH_TOKEN = "refreshToken"
