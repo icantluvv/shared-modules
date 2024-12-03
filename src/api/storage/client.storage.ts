@@ -23,10 +23,11 @@ export function createClientStorage(): StorageService {
                 expiresIn: tokens.accessToken.expiresIn
             }));
 
-            localStorage.setItem(COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
-                value: tokens.refreshToken.value,
-                expiresIn: tokens.refreshToken.expiresIn
-            }));
+            tokens.refreshToken &&
+                localStorage.setItem(COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
+                    value: tokens.refreshToken.value,
+                    expiresIn: tokens.refreshToken.expiresIn
+                }));
         },
 
         async setDeviceId(id) {

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { StorageService } from '../storage/types';
-import { Auth } from '../types';
+import {Auth} from "../../dto/objects/Auth";
 
 export abstract class BaseService {
     constructor(
@@ -8,7 +8,7 @@ export abstract class BaseService {
         protected readonly storage: StorageService
     ) {}
 
-    protected async handleAuthResponse(tokens: Auth.Responses.Tokens): Promise<void> {
+    protected async handleAuthResponse(tokens: Auth.Responses.Partial): Promise<void> {
         await this.storage.setTokens(tokens);
     }
 }

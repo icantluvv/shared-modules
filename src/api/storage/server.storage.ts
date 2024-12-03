@@ -27,7 +27,7 @@ export function createServerStorage(): StorageService {
                 maxAge: Math.floor(tokens.accessToken.expiresIn / 1000)
             });
 
-            cookies().set(COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
+            tokens.refreshToken && cookies().set(COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
                 value: tokens.refreshToken.value,
                 expiresIn: tokens.refreshToken.expiresIn
             }), {

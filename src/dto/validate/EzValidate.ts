@@ -1,9 +1,8 @@
-import { validate } from "class-validator"
+import { validate } from 'class-validator';
 
-export async function ezValidate(some: any) {
-    const errors = await validate(some)
-
+export async function validateDTO<T extends object>(dto: T): Promise<void> {
+    const errors = await validate(dto);
     if (errors.length > 0) {
-        throw "parse " + some.constructor.name + " error"
+        throw new Error(`Validation failed: ${JSON.stringify(errors)}`);
     }
 }

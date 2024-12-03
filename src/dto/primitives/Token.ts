@@ -1,6 +1,14 @@
-import { IsoDate } from "../tsPrimitives/IsoDate"
+import { IsString, IsNumber } from 'class-validator';
 
-export interface Token {
-    value: string
-    expiration: IsoDate
+export class Token {
+    @IsString()
+    value: string;
+
+    @IsNumber()
+    expiresIn: number;
+
+    constructor(value: string, expiresIn: number) {
+        this.value = value;
+        this.expiresIn = expiresIn;
+    }
 }
