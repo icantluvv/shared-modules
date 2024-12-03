@@ -1,13 +1,13 @@
-import { Token } from "../primitives/Token";
-import { User } from "./User";
+import { Token } from '../primitives/Token';
+import { User } from './User';
 export declare namespace Auth {
     namespace Parameters {
         class AppleToken {
             token: string;
             firstName?: string;
             lastName?: string;
-            emailVerified?: boolean;
             email?: string;
+            emailVerified?: boolean;
             constructor(token: string, firstName?: string, lastName?: string, email?: string, emailVerified?: boolean);
         }
         class GoogleToken {
@@ -15,6 +15,10 @@ export declare namespace Auth {
             firstName?: string;
             lastName?: string;
             constructor(token: string, firstName?: string, lastName?: string);
+        }
+        class RefreshToken {
+            refreshToken: string;
+            constructor(refreshToken: string);
         }
     }
     namespace Responses {

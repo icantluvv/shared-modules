@@ -3,13 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const base_service_1 = require("./base.service");
 const constants_1 = require("../constants");
+const EzValidate_1 = require("../../dto/validate/EzValidate");
 class AuthService extends base_service_1.BaseService {
     async googleAuth(params) {
+        await (0, EzValidate_1.validateDTO)(params);
         const response = await this.client.post(constants_1.API_ENDPOINTS.AUTH.GOOGLE, params);
         await this.handleAuthResponse(response.data);
         return response.data;
     }
     async appleAuth(params) {
+        await (0, EzValidate_1.validateDTO)(params);
         const response = await this.client.post(constants_1.API_ENDPOINTS.AUTH.APPLE, params);
         await this.handleAuthResponse(response.data);
         return response.data;

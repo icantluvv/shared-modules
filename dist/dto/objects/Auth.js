@@ -11,7 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Auth = void 0;
 const class_validator_1 = require("class-validator");
+const Token_1 = require("../primitives/Token");
 const User_1 = require("./User");
+const class_transformer_1 = require("class-transformer");
 var Auth;
 (function (Auth) {
     let Parameters;
@@ -26,9 +28,29 @@ var Auth;
             }
         }
         __decorate([
+            (0, class_validator_1.IsString)(),
+            __metadata("design:type", String)
+        ], AppleToken.prototype, "token", void 0);
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", String)
+        ], AppleToken.prototype, "firstName", void 0);
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", String)
+        ], AppleToken.prototype, "lastName", void 0);
+        __decorate([
             (0, class_validator_1.IsEmail)(),
+            (0, class_validator_1.IsOptional)(),
             __metadata("design:type", String)
         ], AppleToken.prototype, "email", void 0);
+        __decorate([
+            (0, class_validator_1.IsBoolean)(),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", Boolean)
+        ], AppleToken.prototype, "emailVerified", void 0);
         Parameters.AppleToken = AppleToken;
         class GoogleToken {
             constructor(token, firstName, lastName) {
@@ -37,7 +59,31 @@ var Auth;
                 this.lastName = lastName;
             }
         }
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            __metadata("design:type", String)
+        ], GoogleToken.prototype, "token", void 0);
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", String)
+        ], GoogleToken.prototype, "firstName", void 0);
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", String)
+        ], GoogleToken.prototype, "lastName", void 0);
         Parameters.GoogleToken = GoogleToken;
+        class RefreshToken {
+            constructor(refreshToken) {
+                this.refreshToken = refreshToken;
+            }
+        }
+        __decorate([
+            (0, class_validator_1.IsString)(),
+            __metadata("design:type", String)
+        ], RefreshToken.prototype, "refreshToken", void 0);
+        Parameters.RefreshToken = RefreshToken;
     })(Parameters = Auth.Parameters || (Auth.Parameters = {}));
     let Responses;
     (function (Responses) {
@@ -50,6 +96,17 @@ var Auth;
         }
         __decorate([
             (0, class_validator_1.ValidateNested)(),
+            (0, class_transformer_1.Type)(() => Token_1.Token),
+            __metadata("design:type", Token_1.Token)
+        ], Full.prototype, "accessToken", void 0);
+        __decorate([
+            (0, class_validator_1.ValidateNested)(),
+            (0, class_transformer_1.Type)(() => Token_1.Token),
+            __metadata("design:type", Token_1.Token)
+        ], Full.prototype, "refreshToken", void 0);
+        __decorate([
+            (0, class_validator_1.ValidateNested)(),
+            (0, class_transformer_1.Type)(() => User_1.User.Responses.Full),
             __metadata("design:type", User_1.User.Responses.Full)
         ], Full.prototype, "user", void 0);
         Responses.Full = Full;
@@ -59,6 +116,17 @@ var Auth;
                 this.refreshToken = refreshToken;
             }
         }
+        __decorate([
+            (0, class_validator_1.ValidateNested)(),
+            (0, class_transformer_1.Type)(() => Token_1.Token),
+            __metadata("design:type", Token_1.Token)
+        ], Partial.prototype, "accessToken", void 0);
+        __decorate([
+            (0, class_validator_1.ValidateNested)(),
+            (0, class_transformer_1.Type)(() => Token_1.Token),
+            (0, class_validator_1.IsOptional)(),
+            __metadata("design:type", Token_1.Token)
+        ], Partial.prototype, "refreshToken", void 0);
         Responses.Partial = Partial;
     })(Responses = Auth.Responses || (Auth.Responses = {}));
 })(Auth || (exports.Auth = Auth = {}));

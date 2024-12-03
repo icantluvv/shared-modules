@@ -1,1 +1,1 @@
-export declare function ezValidate(some: any): Promise<void>;
+export declare function validateDTO<T extends object>(dto: T): Promise<void>;

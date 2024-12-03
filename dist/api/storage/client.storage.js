@@ -20,10 +20,11 @@ function createClientStorage() {
                 value: tokens.accessToken.value,
                 expiresIn: tokens.accessToken.expiresIn
             }));
-            localStorage.setItem(constants_1.COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
-                value: tokens.refreshToken.value,
-                expiresIn: tokens.refreshToken.expiresIn
-            }));
+            tokens.refreshToken &&
+                localStorage.setItem(constants_1.COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
+                    value: tokens.refreshToken.value,
+                    expiresIn: tokens.refreshToken.expiresIn
+                }));
         },
         async setDeviceId(id) {
             localStorage.setItem(constants_1.COOKIE_CONFIG.DEVICE_ID.name, id);

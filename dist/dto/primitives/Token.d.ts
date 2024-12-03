@@ -1,5 +1,5 @@
-import { IsoDate } from "../tsPrimitives/IsoDate";
-export interface Token {
+export declare class Token {
     value: string;
-    expiration: IsoDate;
+    expiresIn: number;
+    constructor(value: string, expiresIn: number);
 }

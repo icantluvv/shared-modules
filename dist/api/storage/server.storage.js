@@ -24,7 +24,7 @@ function createServerStorage() {
                 value: tokens.accessToken.value,
                 expiresIn: tokens.accessToken.expiresIn
             }), Object.assign(Object.assign({}, constants_1.COOKIE_CONFIG.ACCESS_TOKEN.options), { maxAge: Math.floor(tokens.accessToken.expiresIn / 1000) }));
-            (0, headers_1.cookies)().set(constants_1.COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
+            tokens.refreshToken && (0, headers_1.cookies)().set(constants_1.COOKIE_CONFIG.REFRESH_TOKEN.name, JSON.stringify({
                 value: tokens.refreshToken.value,
                 expiresIn: tokens.refreshToken.expiresIn
             }), Object.assign(Object.assign({}, constants_1.COOKIE_CONFIG.REFRESH_TOKEN.options), { maxAge: Math.floor(tokens.refreshToken.expiresIn / 1000) }));

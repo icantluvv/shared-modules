@@ -1,5 +1,5 @@
 import { BaseService } from './base.service';
-import { Auth } from '../types';
+import { Auth } from "../../dto/objects/Auth";
 export declare class AuthService extends BaseService {
     googleAuth(params: Auth.Parameters.GoogleToken): Promise<Auth.Responses.Full>;
     appleAuth(params: Auth.Parameters.AppleToken): Promise<Auth.Responses.Full>;

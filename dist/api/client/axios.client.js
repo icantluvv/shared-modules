@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApiClient = void 0;
 const axios_1 = __importDefault(require("axios"));
-const config_1 = require("../constants/config");
-const endpoints_1 = require("../constants/endpoints");
+const constants_1 = require("../constants");
+const constants_2 = require("../constants");
 const uuid_1 = require("uuid");
 class ApiClient {
     constructor(storage) {
@@ -15,9 +15,9 @@ class ApiClient {
     }
     createClient() {
         const client = axios_1.default.create({
-            baseURL: config_1.API_CONFIG.BASE_URL,
-            timeout: config_1.API_CONFIG.TIMEOUT,
-            headers: config_1.API_CONFIG.DEFAULT_HEADERS
+            baseURL: constants_1.API_CONFIG.BASE_URL,
+            timeout: constants_1.API_CONFIG.TIMEOUT,
+            headers: constants_1.API_CONFIG.DEFAULT_HEADERS
         });
         this.setupInterceptors(client);
         return client;
@@ -45,7 +45,7 @@ class ApiClient {
                     const refreshToken = await this.storage.getRefreshToken();
                     if (!refreshToken)
                         throw new Error('No refresh token');
-                    const response = await client.post(endpoints_1.API_ENDPOINTS.AUTH.REFRESH, { refreshToken });
+                    const response = await client.post(constants_2.API_ENDPOINTS.AUTH.REFRESH, { refreshToken });
                     await this.storage.setTokens(response.data);
                     return client(originalRequest);
                 }
